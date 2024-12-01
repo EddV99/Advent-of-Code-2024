@@ -1,7 +1,7 @@
 import * as day1 from "./day1/main.js";
 import * as day2 from "./day2/main.js";
 
-const daysDone = ["1", "2"];
+const daysDone = ["1"];
 
 let runDay = (day: string) => {
   switch (day) {
