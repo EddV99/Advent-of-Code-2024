@@ -70,4 +70,5 @@ export default function run() {
   console.log("Day 1 Solution");
   console.log("Part 1:\n", part1());
   console.log("Part 2:\n", part2());
+  console.log();
 }
