@@ -14,6 +14,17 @@ SAXAMASAAA
 MAMMMXMMMM
 MXMXAXMASX`;
 
+const example2: string = `.M.S......
+..A..MSMS.
+.M.S.MAA..
+..A.ASMSM.
+.M.S.M....
+..........
+S.S.S.S.S.
+.A.A.A.A..
+M.M.M.M.M.
+..........`;
+
 const INPUT_TEXT = inputFile;
 
 // parse data
@@ -64,7 +75,7 @@ function checkDia(r: number, c: number) {
   str = "";
   i = r;
   j = c;
-  while (i < rows  && j >= 0 && str.length < target.length) {
+  while (i < rows && j >= 0 && str.length < target.length) {
     str += data[i][j];
     i++;
     j--;
@@ -95,7 +106,37 @@ function part1() {
   return result;
 }
 
-function part2() {}
+function countXMAS2(r: number, c: number) {
+  if (data[r][c] !== "A") return 0;
+
+  let str = "";
+
+  // check one diagonal first
+  if (r - 1 >= 0 && c - 1 >= 0) str += data[r - 1][c - 1];
+  str += data[r][c];
+  if (r + 1 < rows && c + 1 < cols) str += data[r + 1][c + 1];
+  if (str !== "MAS" && str !== "SAM") return 0;
+
+  // check other diagonal
+  str = "";
+  if (r - 1 >= 0 && c + 1 < cols) str += data[r - 1][c + 1];
+  str += data[r][c];
+  if (r + 1 < rows && c - 1 >= 0) str += data[r + 1][c - 1];
+  if (str !== "MAS" && str !== "SAM") return 0;
+
+  return 1;
+}
+
+function part2() {
+  let result = 0;
+  for (let r = 0; r < rows; ++r) {
+    for (let c = 0; c < cols; ++c) {
+      result += countXMAS2(r, c);
+    }
+  }
+
+  return result;
+}
 
 export default function run() {
   console.log("Day 4 Solution");
