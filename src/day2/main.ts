@@ -11,39 +11,57 @@ const example1 = `7 6 4 2 1
 const INPUT = inputFile;
 
 // parse input
-let lines = INPUT.split("\n");
-function part1() {
-  // anything greater than 2 is unsafe
-  const tolerance = 3;
-  // only increasing or decreasing
-  let increasing = false;
-  // check if first time
-  let firstCheck = true;
+let lines = INPUT.split("\n").filter((line) => line.trim() !== "");
 
+function isValid(nums: string[]) {
+  let onlyInc = true;
+  let onlyDec = true;
+  let tolerance = 3;
+  let bad = false;
+
+  for (let i = 0; i < nums.length - 1; i++) {
+    let diff = Math.abs(Number(nums[i + 1]) - Number(nums[i]));
+    if (diff > tolerance || diff < 1) bad = true;
+    if (Number(nums[i]) > Number(nums[i + 1])) onlyInc = false;
+    if (Number(nums[i]) < Number(nums[i + 1])) onlyDec = false;
+  }
+
+  return !bad && (onlyInc || onlyDec);
+}
+
+function part1() {
   let safeCount = 0;
   lines.forEach((line) => {
     let nums = line.split(" ");
-    if (firstCheck) {
-      firstCheck = false;
-      increasing = Number(nums[0]) < Number(nums[1]);
+    if (nums.length > 0) {
+      if (isValid(nums)) safeCount++;
     }
-
-    for (let i = 0; i + 1 < nums.length; i++) {
-      if (Number(nums[i]) === Number(nums[i + 1])) break;
-      if (Number(nums[i]) > Number(nums[i + 1]) && increasing) break;
-      if (Number(nums[i]) < Number(nums[i + 1]) && !increasing) break;
-      let x = Math.abs(Number(nums[i]) - Number(nums[i + 1]));
-      if (x > tolerance) break;
-      if (i + 1 == nums.length - 1) safeCount++;
-    }
-
-    firstCheck = true;
   });
 
   return safeCount;
 }
 
-function part2() {}
+function part2() {
+  let count = 0;
+
+  lines.forEach((line) => {
+    let nums = line.split(" ");
+
+    if (!isValid(nums)) {
+      for (let i = 0; i < nums.length; i++) {
+        let newNums = [...nums];
+        newNums.splice(i, 1);
+        if (isValid(newNums)) {
+          count++;
+          break;
+        }
+      }
+    } else {
+      count++;
+    }
+  });
+  return count;
+}
 
 export default function run() {
   console.log("Day 2 Solution");
