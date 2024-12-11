@@ -77,7 +77,33 @@ function part1() {
   return count;
 }
 
-function part2() {}
+function part2() {
+  let count = 0;
+
+  pagesPerUpdate.forEach((line) => {
+    let pages = line.split(",");
+
+    let valid = true;
+
+    for (let i = 0; i < pages.length; ++i) {
+      let page = pages[i];
+      if (rules.has(page)) {
+        for (let j = i + 1; j < pages.length; ++j) {
+          if (rules.get(pages[j])?.includes(pages[i])) {
+            valid = false;
+            let t = pages[i];
+            pages[i] = pages[j];
+            pages[j] = t;
+          }
+        }
+      }
+    }
+
+    if (!valid) count += Number(pages[Math.floor(pages.length / 2)]);
+  });
+
+  return count;
+}
 
 export default function run() {
   console.log("Day 5 Solution");
