@@ -16,15 +16,15 @@ const example1: string = `............
 ............
 ............`;
 
-const example2: string = `.aa.`;
+const example2: string = `....aa....`;
 
 const INPUT_TEXT = inputFile;
 
 // parse input
 let lines = INPUT_TEXT.trim().split("\n");
 
-let row = lines[0].length;
-let col = lines.length;
+let row = lines.length;
+let col = lines[0].length;
 
 let r = 0;
 let c = 0;
@@ -84,7 +84,63 @@ function part1() {
   return count;
 }
 
-function part2() {}
+function part2() {
+  let count = 0;
+  let antinodes = new Set<string>();
+
+  map.forEach((v, k) => {
+    if (v.length > 1) {
+      v.forEach((p) => {
+        let posStr = JSON.stringify(p);
+        if (!antinodes.has(posStr)) {
+          count++;
+          antinodes.add(posStr);
+        }
+      });
+
+      for (let i = 0; i < v.length; ++i) {
+        for (let j = i + 1; j < v.length; ++j) {
+          if (i !== j) {
+            let p1 = v[i];
+            let p2 = v[j];
+
+            let diff1 = { r: p2.r - p1.r, c: p2.c - p1.c };
+            let t = 1;
+            let pos = { r: t * diff1.r + p2.r, c: t * diff1.c + p2.c };
+
+            while (inBounds(pos.r, pos.c)) {
+              let posStr = JSON.stringify(pos);
+              if (!antinodes.has(posStr)) {
+                count++;
+                antinodes.add(posStr);
+              }
+
+              t++;
+              pos = { r: t * diff1.r + p2.r, c: t * diff1.c + p2.c };
+            }
+
+            let diff2 = { r: p1.r - p2.r, c: p1.c - p2.c };
+            t = 1;
+            pos = { r: t * diff2.r + p1.r, c: t * diff2.c + p1.c };
+
+            while (inBounds(pos.r, pos.c)) {
+              let posStr = JSON.stringify(pos);
+              if (!antinodes.has(posStr)) {
+                count++;
+                antinodes.add(posStr);
+              }
+
+              t++;
+              pos = { r: t * diff2.r + p1.r, c: t * diff2.c + p1.c };
+            }
+          }
+        }
+      }
+    }
+  });
+
+  return count;
+}
 
 export default function run() {
   console.log("Day 8 Solution");
