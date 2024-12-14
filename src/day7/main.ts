@@ -13,7 +13,7 @@ const example1: string = `190: 10 19
 21037: 9 7 18 13
 292: 11 6 16 20`;
 
-const INPUT_TEXT = example1;
+const INPUT_TEXT = inputFile;
 
 // parse the input
 let equations: { result: number; nums: number[] }[] = [];
