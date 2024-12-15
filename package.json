@@ -4,7 +4,9 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "build": "tsc -p tsconfig.json",
+    "clean": "rimraf out",
+    "copy-files": "copyfiles -u 1 src/**/*/input.txt out/",
+    "build": "npm run clean && tsc -p tsconfig.json && npm run copy-files",
     "day": "node ./out/index.js"
   },
   "keywords": [],
@@ -13,6 +15,8 @@
   "description": "",
   "devDependencies": {
     "@types/node": "^22.10.1",
+    "copyfiles": "^2.4.1",
+    "rimraf": "^5.0.10",
     "typescript": "^5.7.2"
   }
 }

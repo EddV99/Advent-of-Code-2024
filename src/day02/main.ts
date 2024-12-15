@@ -1,6 +1,6 @@
 import getFile from "../util/read-file.js";
 
-const inputFile = getFile("input.txt");
+let inputFile = getFile(import.meta.dirname, "input.txt");
 const example1 = `7 6 4 2 1
 1 2 7 8 9
 9 7 6 2 1

@@ -1,12 +1,12 @@
-import * as day1 from "./day1/main.js";
-import * as day2 from "./day2/main.js";
-import * as day3 from "./day3/main.js";
-import * as day4 from "./day4/main.js";
-import * as day5 from "./day5/main.js";
-import * as day6 from "./day6/main.js";
-import * as day7 from "./day7/main.js";
-import * as day8 from "./day8/main.js";
-import * as day9 from "./day9/main.js";
+import * as day01 from "./day01/main.js";
+import * as day02 from "./day02/main.js";
+import * as day03 from "./day03/main.js";
+import * as day04 from "./day04/main.js";
+import * as day05 from "./day05/main.js";
+import * as day06 from "./day06/main.js";
+import * as day07 from "./day07/main.js";
+import * as day08 from "./day08/main.js";
+import * as day09 from "./day09/main.js";
 import * as day10 from "./day10/main.js";
 
 const daysDone = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
@@ -14,37 +14,37 @@ const daysDone = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
 let runDay = (day: string) => {
   switch (day) {
     case "1":
-      day1.default();
+      day01.default();
       break;
     case "2":
-      day2.default();
+      day02.default();
       break;
     case "3":
-      day3.default();
+      day03.default();
       break;
     case "4":
-      day4.default();
+      day04.default();
       break;
     case "5":
-      day5.default();
+      day05.default();
       break;
     case "6":
-      day6.default();
+      day06.default();
       break;
     case "7":
-      day7.default();
+      day07.default();
       break;
     case "8":
-      day8.default();
+      day08.default();
       break;
     case "9":
-      day9.default();
+      day09.default();
       break;
     case "10":
       day10.default();
       break;
     default:
-      console.log(`day${day} hasn't been done`);
+      console.log(`day0${day} hasn't been done`);
   }
 };
 
