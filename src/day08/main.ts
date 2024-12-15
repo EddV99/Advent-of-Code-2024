@@ -1,6 +1,6 @@
 import getFile from "../util/read-file.js";
 // input file contents
-let inputFile = getFile("./../../inputs/day8/input.txt");
+let inputFile = getFile("input.txt");
 
 // example contents
 const example1: string = `............
