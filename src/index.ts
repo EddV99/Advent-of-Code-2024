@@ -10,8 +10,9 @@ import * as day09 from "./day09/main.js";
 import * as day10 from "./day10/main.js";
 import * as day11 from "./day11/main.js";
 import * as day12 from "./day12/main.js";
+import * as day13 from "./day13/main.js";
 
-const daysDone = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"];
+const daysDone = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13"];
 
 let runDay = (day: string) => {
   switch (day) {
@@ -50,6 +51,9 @@ let runDay = (day: string) => {
       break;
     case "12":
       day12.default();
+      break;
+    case "13":
+      day13.default();
       break;
     default:
       console.log(`day${day} hasn't been done`);
